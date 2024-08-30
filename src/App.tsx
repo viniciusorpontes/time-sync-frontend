@@ -4,15 +4,15 @@ import Agendamentos from './pages/Agendamentos';
 import MainLayout from './components/MainLayout';
 
 const App: React.FC = () => {
-    return (
-      <Router>
-        <Routes>
-          <Route path="/" element={<MainLayout/>}>
-            <Route element={<Agendamentos/>} />
-          </Route>
-        </Routes>
-      </Router>
-    );
-  };
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainLayout />}>
+          <Route path="agendamentos" element={<Agendamentos />} />
+        </Route>
+      </Routes>
+    </Router>
+  );
+};
 
 export default App;

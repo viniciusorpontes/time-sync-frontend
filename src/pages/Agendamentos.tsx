@@ -1,10 +1,26 @@
-const SchedulePage: React.FC = () => {
+import { Scheduler } from "@aldabil/react-scheduler";
+
+const Agendamentos: React.FC = () => {
 
     return (
-        <div>
-            <h1>Manage Schedules</h1>
-        </div>
+        <Scheduler
+            view="month"
+            events={[
+                {
+                    event_id: 1,
+                    title: "Event 1",
+                    start: new Date("2021/5/2 09:30"),
+                    end: new Date("2021/5/2 10:30"),
+                },
+                {
+                    event_id: 2,
+                    title: "Event 2",
+                    start: new Date("2021/5/4 10:00"),
+                    end: new Date("2021/5/4 11:00"),
+                },
+            ]}
+        />
     );
 };
 
-export default SchedulePage;
+export default Agendamentos;
