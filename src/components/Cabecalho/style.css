@@ -1,0 +1,29 @@
+.cabecalho-container {
+    height: 6vh;
+    background-color: #1565C0;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.transparent-button {
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    position: absolute;
+    left: 10px;
+}
+
+.transparent-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.titulo-cabecalho {
+    color: #FFFFFF;
+    font-size: 24px;
+    margin: 0;
+}
