@@ -2,20 +2,29 @@ import { useState } from 'react';
 import { InputText } from 'primereact/inputtext';
 import { Password } from 'primereact/password';
 import { Button } from 'primereact/button';
+import { useNavigate } from 'react-router-dom'; // Importa o hook de navegação
 import './style.css';
 import axiosInstance from '../../api/axiosInstance';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+    const navigate = useNavigate(); // Inicializa o hook de navegação
 
     const logar = async () => {
-        const request = {email,senha}
-        const response = await axiosInstance.post('/login', request);
-        const responseBody = response.data;
+        try {
+            const request = { email, senha };
+            const response = await axiosInstance.post('/login', request);
+            const responseBody = response.data;
 
-        localStorage.setItem('token', responseBody.token);
-        localStorage.setItem('usuarioId', responseBody.usuario.id)
+            localStorage.setItem('token', responseBody.token);
+            localStorage.setItem('usuarioId', responseBody.usuario.id);
+
+            navigate('/inicio'); // Redireciona para a tela de início após o login
+        } catch (error) {
+            console.error("Erro ao fazer login:", error);
+            alert("Falha ao fazer login. Verifique suas credenciais.");
+        }
     };
 
     return (

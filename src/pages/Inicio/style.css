@@ -1,0 +1,158 @@
+.container {
+    padding-top: 38px; /* Ajuste este valor conforme necessário, dependendo da altura do seu cabeçalho fixo */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100vh; /* Limite de altura da pagina */
+}
+
+.container p {
+    font-weight: bold;
+    font-size: 30px;
+    color: #1565C0;
+    text-align: center;
+}
+
+main {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.box-titulo {
+    background-color: #1565C0;
+    padding-bottom: 50px;
+    font-size: xx-large;
+}
+
+h1 {
+    color: #fff;
+}
+
+.box-titulo p {
+    font-size: 40px;
+    color: #fff;
+    margin-bottom: 50px;
+}
+
+/* Quadro ao redor de cada empresa */
+.empresa-card {
+    border: 2px solid #ddd; /* Borda cinza clara */
+    border-radius: 8px; /* Bordas arredondadas */
+    padding: 25px; /* Espaço interno */
+    padding-bottom: 15%; /* Espaço abaixo do botão */
+    background-color: #0D47A1; /* Fundo card */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    margin: 0 auto; /* Centraliza o card no container */
+    max-width: 450px; /* Largura máxima */
+}
+
+/* Estilo para o nome da empresa */
+.nome-empresa {
+    font-size: 3rem; /* Aumenta o tamanho da fonte */
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 0.1rem;
+}
+
+/* Estilo para o endereço da empresa */
+.endereco-empresa {
+    font-size: 1.8rem;
+    color: #ffffff; /* Ajuste a cor conforme necessário */
+    margin-bottom: 1rem;
+}
+
+/* Estilo para o telefone da empresa */
+.telefone-empresa {
+    font-size: 1.8rem;
+    color: #ffffff; 
+    margin-bottom: 1rem;
+}
+
+/* Estilo para o botão "Agendar agora" */
+.botao-agendar {
+    background-color: white;
+    color: blue;
+    border: 1px solid blue;
+}
+
+.botao-agendar:hover {
+    background-color: #1565C0;
+    color: #ffffff;
+}
+
+/* Botão de chamada para ação (CTA) */
+.cta-button {
+    background-color: #1565C0;
+    color: #fff;
+    padding: 15px 30px;
+    font-size: 30px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+/* Efeito de hover para o botão */
+.cta-button:hover {
+    background-color: #0D47A1; /* Um tom um pouco mais escuro no hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra ao passar o mouse */
+}
+
+.box-requisitos {
+    padding: 30px 10px;
+    color: #1565C0;
+    font-size: xx-large;
+}
+
+.box-requisitos p {
+    font-size: 50px;
+}
+
+.box-cards {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-top: 80px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #1565C0;
+    width: calc((100% / 3) - 10px);
+    max-width: 400px;
+    height: 400px;
+    margin: 5px;
+    padding:  10px 5px;
+    border-radius: 5px;
+    box-shadow: 5px 5px #0D47A1;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+    background-color: #0D47A1;
+    color: #e3f2fd;
+}
+
+.card h3 {
+    margin: 10px 5px 20px;
+    color: #fff;
+    font-size: 40px;
+}
+
+.card p {
+    margin: 10px 5px 20px;
+    color: #fff;
+    font-size: 30px;
+}

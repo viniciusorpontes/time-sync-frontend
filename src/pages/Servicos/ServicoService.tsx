@@ -5,7 +5,7 @@ export class ServicoService {
 
     buscarServicosPorUsuarioId(usuarioId: number) {
 
-        if (usuarioId == 0) {
+        if (usuarioId === 0) {
             usuarioId = Number(localStorage.getItem('usuarioId'));
         }
 
