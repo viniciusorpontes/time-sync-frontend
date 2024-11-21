@@ -1,0 +1,28 @@
+.formulario-empresa-usuario {
+    display: flex;
+    align-items: end; /* Alinha os elementos verticalmente ao centro */
+}
+
+.email-convidado {
+    width: 55%;
+}
+
+.checkbox {
+    width: 15%;
+    display: flex;
+    align-items: center; /* Alinha o checkbox e o label do gestor */
+    padding: 0 0 1% 1%;
+}
+
+.botoes {
+    display: flex;
+    justify-content: center;
+}
+
+.botao {
+    margin: 20px 10px 10px 0;
+}
+
+.labelConvidado {
+    display: block;
+}

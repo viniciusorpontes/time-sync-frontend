@@ -18,6 +18,7 @@ export type Servico = {
     tempo: string;
     valor: string;
     usuarios?: UsuarioMultiSelect[];
+    empresaId: number;
 };
 
 export type Agendamento = {
@@ -28,6 +29,7 @@ export type Agendamento = {
 }
 
 export type SalvarOuAlterarAgendamentoDTO = {
+    empresaId: number,
     dataChegada?: string,
     idsServicos?: (number | undefined)[],
     clienteId?: number,
@@ -40,4 +42,34 @@ export type UsuarioAgendamento = {
     mobile?: string,
     avatar?: string,
     color?: string
+}
+
+export type EmpresaUsuario = {
+    id?: number;
+    nome?: string;
+    email?: string;
+    confirmado?: boolean;
+    gestor?: boolean;
+}
+
+export type Empresa = {
+    id?: number,
+    nome?: string;
+}
+
+export type ConvidarUsuarioDTO = {
+    empresaId: number | undefined,
+    email: string,
+    gestor: boolean,
+}
+
+export type AlterarUsuarioEmpresaDTO = {
+    empresaId: number,
+    email: string,
+    gestor: boolean
+}
+
+export type RemoverProdutivoDTO = {
+    empresaId: number,
+    email: string
 }
