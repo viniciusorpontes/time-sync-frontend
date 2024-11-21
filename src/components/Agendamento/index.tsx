@@ -1,14 +1,14 @@
-import { ProcessedEvent, SchedulerHelpers } from "@aldabil/react-scheduler/types";
+import { SchedulerHelpers } from "@aldabil/react-scheduler/types";
 import { Button, DialogActions, TextField, Select, MenuItem, InputLabel, FormControl } from "@mui/material";
 import { useEffect, useState } from "react";
 import { AgendamentoService } from "../../pages/Agendamentos/AgendamentoService";
-import { SalvarOuAlterarAgendamentoDTO, Servico, Usuario } from "../../types";
+import { Servico } from "../../types";
 import { ServicoService } from "../../pages/Servicos/ServicoService";
 import { UsuarioService } from "../../pages/Usuarios/UsuarioService";
 
-const Agendamento = (props: { scheduler: SchedulerHelpers; buscarAgendamento: () => void; }) => {
+const Agendamento = (props: { scheduler: SchedulerHelpers; buscarAgendamento: () => void; empresaId: number}) => {
 
-    const { scheduler, buscarAgendamento } = props;
+    const { scheduler, buscarAgendamento, empresaId } = props;
 
     const agendamentoService = new AgendamentoService();
     const servicoService = new ServicoService();
@@ -16,8 +16,8 @@ const Agendamento = (props: { scheduler: SchedulerHelpers; buscarAgendamento: ()
 
     const [servicos, setServicos] = useState<Servico[]>();
 
-    const buscarServicosPorUsuarioId = (usuarioId: any) => {
-        servicoService.buscarServicosPorUsuarioId(usuarioId)
+    const buscarServicosPorEmpresaIdEUsuarioId = (empresaId: number, usuarioId: any) => {
+        servicoService.buscarServicosPorEmpresaIdEUsuarioId(empresaId, usuarioId)
             .then(response => {
                 const _servicos = response.data;
                 setServicos(_servicos)
@@ -52,7 +52,7 @@ const Agendamento = (props: { scheduler: SchedulerHelpers; buscarAgendamento: ()
 
     useEffect(() => {
         const usuarioId = scheduler.admin_id;
-        buscarServicosPorUsuarioId(usuarioId);
+        buscarServicosPorEmpresaIdEUsuarioId(empresaId, usuarioId);
         buscarResponsavel(usuarioId);
         if (scheduler.edited) {
             buscarAgendamentoPorId(scheduler.edited.event_id)
@@ -103,6 +103,7 @@ const Agendamento = (props: { scheduler: SchedulerHelpers; buscarAgendamento: ()
             const servicosFiltrados = servicos?.filter(servico => form.servicos.includes(servico.nome)).map(servico => servico.id);
 
             const salvarOuAlterarAgendamentoDTO = {
+                empresaId: empresaId,
                 dataChegada: form.dataChegada,
                 idsServicos: servicosFiltrados,
                 clienteId: Number(form.responsavelId),
@@ -116,7 +117,6 @@ const Agendamento = (props: { scheduler: SchedulerHelpers; buscarAgendamento: ()
             } else {
                 response = await agendamentoService.salvar(salvarOuAlterarAgendamentoDTO);
             }
-
 
             const agendamentoDTO = response.data;
 

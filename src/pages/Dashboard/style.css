@@ -1,0 +1,10 @@
+.graficos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+.grafico {
+    margin: 20px 0;
+}

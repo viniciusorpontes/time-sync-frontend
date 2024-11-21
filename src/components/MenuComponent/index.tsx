@@ -23,8 +23,18 @@ const MenuComponent: React.FC<MenuComponentProps> = ({ isMenuVisivel }) => {
     },
     {
       label: 'Servicos',
-      icon: 'pi pi-fw pi-calendar',
+      icon: 'pi pi-fw pi-server',
       command: () => navigate('/servicos')
+    },
+    {
+      label: 'Empresas',
+      icon: 'pi pi-fw pi-home',
+      command: () => navigate('/empresas')
+    },
+    {
+      label: 'Dashboard',
+      icon: 'pi pi-fw pi-database',
+      command: () => navigate('/dashboard')
     }
   ];
 
