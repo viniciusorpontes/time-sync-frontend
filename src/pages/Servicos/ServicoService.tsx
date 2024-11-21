@@ -12,9 +12,19 @@ export class ServicoService {
         return httpGet(`/servicos/buscarServicosPorUsarioId?usuarioId=${usuarioId}`)
     }
 
+    buscarServicosPorEmpresaIdEUsuarioId(empresaId:number, usuarioId: number) {
+        return httpGet(`/servicos/buscarServicosPorEmpresaIdEUsuarioId?empresaId=${empresaId}&usuarioId=${usuarioId}`)
+    }
+
+    buscarServicosPorEmpresaId(empresaId: number) {
+
+        return httpGet(`/servicos/buscarServicosPorEmpresaId?empresaId=${empresaId}`)
+    }
+
     salvar(servico: Servico) {
 
         const request = {
+            empresaId: servico.empresaId,
             nome: servico.nome,
             tempo: servico.tempo,
             valor: servico.valor,
@@ -27,6 +37,7 @@ export class ServicoService {
     alterar(servico: Servico) {
 
         const request = {
+            empresaId: servico.empresaId,
             nome: servico.nome,
             tempo: servico.tempo,
             valor: servico.valor,

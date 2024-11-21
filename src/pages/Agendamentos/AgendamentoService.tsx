@@ -7,8 +7,8 @@ export class AgendamentoService {
         return httpGet(`/agendamentos/${agendamentoId}`);
     }
 
-    buscarAgendamentosPorUsuariosIds(usuariosIds: number[]) {
-        return httpGet(`/agendamentos/buscarAgendamentosPorUsuariosIds?usuariosIds=${usuariosIds}`);
+    buscarAgendamentosPorEmpresaId(empresaId: number) {
+        return httpGet(`/agendamentos/buscarAgendamentosPorEmpresaId?empresaId=${empresaId}`);
     }
 
     salvar(salvarOuAlterarAgendamentoDTO: SalvarOuAlterarAgendamentoDTO) {
@@ -19,9 +19,12 @@ export class AgendamentoService {
         return httpPut(`/agendamentos/${id}`, salvarOuAlterarAgendamentoDTO)
     }
 
-    alterarDataAgendamento(id: number | string, dataInicio: Date) {
+    alterarDataEUsuarioAgendamento(id: number | string, dataInicio: Date, usuarioId: number) {
         dataInicio.setHours(dataInicio.getHours() - 3);
-        const alterarAgendamentoDTO = { dataChegada: dataInicio.toISOString()}
+        const alterarAgendamentoDTO = { 
+            usuarioId: usuarioId,
+            dataChegada: dataInicio.toISOString()
+        }
         return httpPut(`/agendamentos/alterarDataAgendamento/${id}`, alterarAgendamentoDTO)
     }
 
