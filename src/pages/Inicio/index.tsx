@@ -3,17 +3,13 @@ import { Carousel, CarouselResponsiveOption } from 'primereact/carousel';
 import { Button } from 'primereact/button';
 import './style.css';
 import { useNavigate } from 'react-router-dom';
-
-interface Empresa {
-  id: string;
-  nome: string;
-  endereco: string;
-  telefone: string;
-}
+import {EmpresaService} from "../Empresas/EmpresaService";
+import {Empresa} from "../../types";
 
 const Inicio: React.FC = () => {
   const navigate = useNavigate();
   const [empresas, setEmpresas] = useState<Empresa[]>([]);
+  const empresaService = new EmpresaService();
   const responsiveOptions: CarouselResponsiveOption[] = [
     {
       breakpoint: '1400px',
@@ -38,30 +34,35 @@ const Inicio: React.FC = () => {
   ];
 
   useEffect(() => {
-    // Dados mocados das empresas com nome, endereço e telefone
-    const empresasMock: Empresa[] = [
-      { id: '1', nome: 'Empresa A', endereco: 'Rua A, 123', telefone: '(11) 1111-1111' },
-      { id: '2', nome: 'Empresa B', endereco: 'Rua B, 456', telefone: '(22) 2222-2222' },
-      { id: '3', nome: 'Empresa C', endereco: 'Rua C, 789', telefone: '(33) 3333-3333' },
-      { id: '4', nome: 'Empresa D', endereco: 'Rua D, 101', telefone: '(44) 4444-4444' },
-      { id: '5', nome: 'Empresa E', endereco: 'Rua E, 202', telefone: '(55) 5555-5555' },
-      { id: '6', nome: 'Empresa F', endereco: 'Rua F, 303', telefone: '(66) 6666-6666' },
-      { id: '7', nome: 'Empresa G', endereco: 'Rua G, 404', telefone: '(77) 7777-7777' },
-      { id: '8', nome: 'Empresa H', endereco: 'Rua H, 505', telefone: '(88) 8888-8888' },
-      { id: '9', nome: 'Empresa I', endereco: 'Rua I, 606', telefone: '(99) 9999-9999' }
-    ];
-    setEmpresas(empresasMock);
+    buscarEmpresas();
   }, []);
+
+  const buscarEmpresas = () => {
+    empresaService.buscarEmpresas()
+        .then(response => {
+          const empresas = response.data;
+          setEmpresas(empresas)
+        })
+        .catch(error => console.error(error))
+  }
+
+  const acessarAgendamentos = (empresaId: number | undefined) => {
+    if (localStorage.getItem("usuarioId") && localStorage.getItem("usuarioId")) {
+      navigate('/agendamentos/' + empresaId);
+    } else {
+      navigate('/login/agendamentos/' + empresaId);
+    }
+  }
 
   const empresaTemplate = (empresa: Empresa) => {
     return (
       <div className="empresa-card">
         <h4 className="nome-empresa mb-2">{empresa.nome}</h4>
-        <h4 className="endereco-empresa">Endereço: {empresa.endereco}</h4>
-        <h4 className="telefone-empresa">Telefone: {empresa.telefone}</h4>
+        <h4 className="endereco-empresa">{empresa.endereco}</h4>
+        <h4 className="telefone-empresa">{empresa.telefone}</h4>
         <Button
           label="Agendar agora"
-          onClick={() => navigate('/login')} // Redireciona para a tela de login
+          onClick={() => acessarAgendamentos(empresa.id)} // Redireciona para a tela de login
           className="botao-agendar mt-3"
         />
       </div>

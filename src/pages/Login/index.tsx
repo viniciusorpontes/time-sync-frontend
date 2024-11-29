@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { InputText } from 'primereact/inputtext';
-import { Password } from 'primereact/password';
-import { Button } from 'primereact/button';
-import { useNavigate } from 'react-router-dom'; // Importa o hook de navegação
+import {useState} from 'react';
+import {InputText} from 'primereact/inputtext';
+import {Password} from 'primereact/password';
+import {Button} from 'primereact/button';
+import {useNavigate, useParams} from 'react-router-dom'; // Importa o hook de navegação
 import './style.css';
 import axiosInstance from '../../api/axiosInstance';
 
@@ -10,21 +10,25 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const navigate = useNavigate(); // Inicializa o hook de navegação
+    const {urlDirecionada, id} = useParams();
 
     const logar = async () => {
-        try {
-            const request = { email, senha };
-            const response = await axiosInstance.post('/login', request);
+        const request = {email, senha};
+        axiosInstance.post('/login', request).then(response => {
             const responseBody = response.data;
 
             localStorage.setItem('token', responseBody.token);
             localStorage.setItem('usuarioId', responseBody.usuario.id);
 
-            navigate('/inicio'); // Redireciona para a tela de início após o login
-        } catch (error) {
-            console.error("Erro ao fazer login:", error);
+            if (id === "0") {
+                navigate('/' + urlDirecionada);
+            } else {
+                navigate('/' + urlDirecionada + "/" + id);
+            }
+        }).catch(erro => {
+            console.error("Erro ao fazer login:", erro);
             alert("Falha ao fazer login. Verifique suas credenciais.");
-        }
+        })
     };
 
     return (
@@ -58,7 +62,7 @@ const Login = () => {
                     <a href="#" className="forgot-password">Esqueceu a senha?</a>
                 </div>
 
-                <Button label="Entrar" onClick={logar} className="login-btn" />
+                <Button label="Entrar" onClick={logar} className="login-btn"/>
             </div>
         </div>
     );

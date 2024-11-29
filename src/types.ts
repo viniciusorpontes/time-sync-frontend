@@ -1,12 +1,3 @@
-export type Usuario = {
-    id?: string;
-    cpf?: string;
-    nome: string;
-    email: string;
-    telefone: string;
-    tipo: string;
-}
-
 export type UsuarioMultiSelect = {
     name: string;
     code: number;
@@ -55,6 +46,8 @@ export type EmpresaUsuario = {
 export type Empresa = {
     id?: number,
     nome?: string;
+    endereco?: string;
+    telefone?: string;
 }
 
 export type ConvidarUsuarioDTO = {
@@ -72,4 +65,12 @@ export type AlterarUsuarioEmpresaDTO = {
 export type RemoverProdutivoDTO = {
     empresaId: number,
     email: string
+}
+
+export type SalvarOuAlterarUsuarioDTO = {
+    nome: string;
+    email: string;
+    telefone: string;
+    tipo: string;
+    senha: string
 }

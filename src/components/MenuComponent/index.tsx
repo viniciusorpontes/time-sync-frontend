@@ -13,13 +13,13 @@ const MenuComponent: React.FC<MenuComponentProps> = ({ isMenuVisivel }) => {
   const items = [
     {
       label: 'Inicio',
-      icon: 'pi pi-fw pi-calendar',
+      icon: 'pi pi-fw pi-home',
       command: () => navigate('/inicio')
     },
     {
       label: 'Agendamentos',
       icon: 'pi pi-fw pi-calendar',
-      command: () => navigate('/agendamentos')
+      command: () => navigate('/agendamentos/0')
     },
     {
       label: 'Servicos',
@@ -28,7 +28,7 @@ const MenuComponent: React.FC<MenuComponentProps> = ({ isMenuVisivel }) => {
     },
     {
       label: 'Empresas',
-      icon: 'pi pi-fw pi-home',
+      icon: 'pi pi-fw pi-building',
       command: () => navigate('/empresas')
     },
     {
@@ -39,7 +39,7 @@ const MenuComponent: React.FC<MenuComponentProps> = ({ isMenuVisivel }) => {
   ];
 
   return (
-    <div className={`menu-container ${!isMenuVisivel ? 'menu-hidden' : ''}`} style={{paddingTop: "45px"}}>
+    <div className={`menu-container ${!isMenuVisivel ? 'menu-hidden' : ''}`} style={{paddingTop: "26px"}}>
       <Menu model={items} />
     </div>
   );

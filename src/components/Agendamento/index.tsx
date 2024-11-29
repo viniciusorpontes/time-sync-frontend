@@ -1,5 +1,5 @@
 import { SchedulerHelpers } from "@aldabil/react-scheduler/types";
-import { Button, DialogActions, TextField, Select, MenuItem, InputLabel, FormControl } from "@mui/material";
+import { Button, DialogActions, TextField, Select, MenuItem, InputLabel } from "@mui/material";
 import { useEffect, useState } from "react";
 import { AgendamentoService } from "../../pages/Agendamentos/AgendamentoService";
 import { Servico } from "../../types";

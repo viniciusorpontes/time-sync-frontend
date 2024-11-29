@@ -1,5 +1,5 @@
 .cabecalho-container {
-    height: 10vh;
+    height: 70px;
     background-color: #fff;
     padding: 5px;
     display: flex;
@@ -38,9 +38,8 @@
 } */
 
 .logo-cabecalho {
-    height: 800%; /* Ajusta a altura para 80% da altura do cabeçalho */
-    max-height: 17vh; /* Define um limite máximo para a altura da imagem */
-    width: 280px; /* Mantém a proporção da largura */
+    transform: scale(0.1); /* Reduz para 50% do tamanho original */
+    transform-origin: center;
 }
 
 /* Container dos botões de login e cadastro */

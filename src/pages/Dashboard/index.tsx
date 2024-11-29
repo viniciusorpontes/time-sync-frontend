@@ -191,12 +191,14 @@ export default function Dashboard() {
                             backgroundColor: [
                                 documentStyle.getPropertyValue('--blue-500'),
                                 documentStyle.getPropertyValue('--yellow-500'),
-                                documentStyle.getPropertyValue('--green-500')
+                                documentStyle.getPropertyValue('--green-500'),
+                                documentStyle.getPropertyValue('--red-500')  // Nova cor adicionada aqui
                             ],
                             hoverBackgroundColor: [
                                 documentStyle.getPropertyValue('--blue-400'),
                                 documentStyle.getPropertyValue('--yellow-400'),
-                                documentStyle.getPropertyValue('--green-400')
+                                documentStyle.getPropertyValue('--green-400'),
+                                documentStyle.getPropertyValue('--red-400')  // Nova cor de hover
                             ]
                         }
                     ]
@@ -228,7 +230,7 @@ export default function Dashboard() {
     };
 
     return (
-        <div>
+        <div style={{paddingTop: "14px"}}>
             <div className='empresas-select'>
                 <Dropdown value={empresa} onChange={empresaChange} options={empresas} optionLabel="name"
                     placeholder="Selecione a empresa" />

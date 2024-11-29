@@ -1,19 +1,18 @@
-import { Button } from 'primereact/button';
-import { Column } from 'primereact/column';
-import { DataTable } from 'primereact/datatable';
-import { Dialog } from 'primereact/dialog';
-import { FileUpload } from 'primereact/fileupload';
-import { InputText } from 'primereact/inputtext';
-import { Toast } from 'primereact/toast';
-import { Toolbar } from 'primereact/toolbar';
-import { classNames } from 'primereact/utils';
-import React, { useEffect, useRef, useState } from 'react';
-import type { Servico } from './../../types';
-import { ServicoService } from './ServicoService'
-import { UsuarioService } from './../Usuarios/UsuarioService'
-import { MultiSelect, MultiSelectChangeEvent } from 'primereact/multiselect';
-import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
-import { EmpresaService } from '../Empresas/EmpresaService';
+import {Button} from 'primereact/button';
+import {Column} from 'primereact/column';
+import {DataTable} from 'primereact/datatable';
+import {Dialog} from 'primereact/dialog';
+import {FileUpload} from 'primereact/fileupload';
+import {InputText} from 'primereact/inputtext';
+import {Toast} from 'primereact/toast';
+import {Toolbar} from 'primereact/toolbar';
+import {classNames} from 'primereact/utils';
+import React, {useEffect, useRef, useState} from 'react';
+import type {Servico} from './../../types';
+import {ServicoService} from './ServicoService'
+import {MultiSelect, MultiSelectChangeEvent} from 'primereact/multiselect';
+import {Dropdown, DropdownChangeEvent} from 'primereact/dropdown';
+import {EmpresaService} from '../Empresas/EmpresaService';
 import './style.css';
 
 interface Empresa {
@@ -51,7 +50,7 @@ const ServicoPage = () => {
     const [empresas, setEmpresas] = useState<Empresa[]>([])
 
     const onUsuariosChange = (e: MultiSelectChangeEvent) => {
-        let _servico = { ...servico };
+        let _servico = {...servico};
         _servico.usuarios = e.value;
         setServico(_servico);
     };
@@ -185,7 +184,7 @@ const ServicoPage = () => {
 
     const editServico = (servico: Servico) => {
         servico.empresaId = Number(empresa?.code);
-        setServico({ ...servico });
+        setServico({...servico});
         setServicoDialog(true);
     };
 
@@ -255,7 +254,7 @@ const ServicoPage = () => {
 
     const onInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, name: string) => {
         const val = (e.target && e.target.value) || '';
-        let _servico = { ...servico };
+        let _servico = {...servico};
         (_servico as any)[name] = val;
         setServico(_servico);
     };
@@ -271,8 +270,9 @@ const ServicoPage = () => {
         return (
             <React.Fragment>
                 <div className="my-2">
-                    <Button label="Novo" icon="pi pi-plus" severity="success" className=" mr-2" onClick={openNew} />
-                    <Button label="Excluir" icon="pi pi-trash" severity="danger" onClick={confirmDeleteSelected} disabled={!selectedServicos || !(selectedServicos as any).length} />
+                    <Button label="Novo" icon="pi pi-plus" severity="success" className=" mr-2" onClick={openNew}/>
+                    <Button label="Excluir" icon="pi pi-trash" severity="danger" onClick={confirmDeleteSelected}
+                            disabled={!selectedServicos || !(selectedServicos as any).length}/>
                 </div>
             </React.Fragment>
         );
@@ -281,8 +281,9 @@ const ServicoPage = () => {
     const rightToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <FileUpload mode="basic" accept="image/*" maxFileSize={1000000} chooseLabel="Import" className="mr-2 inline-block" />
-                <Button label="Export" icon="pi pi-upload" severity="help" onClick={exportCSV} />
+                <FileUpload mode="basic" accept="image/*" maxFileSize={1000000} chooseLabel="Import"
+                            className="mr-2 inline-block"/>
+                <Button label="Export" icon="pi pi-upload" severity="help" onClick={exportCSV}/>
             </React.Fragment>
         );
     };
@@ -326,8 +327,9 @@ const ServicoPage = () => {
     const actionBodyTemplate = (rowData: Servico) => {
         return (
             <>
-                <Button icon="pi pi-pencil" rounded severity="success" className="mr-2" onClick={() => editServico(rowData)} />
-                <Button icon="pi pi-trash" rounded severity="warning" onClick={() => confirmDeleteServico(rowData)} />
+                <Button icon="pi pi-pencil" rounded severity="success" className="mr-2"
+                        onClick={() => editServico(rowData)}/>
+                <Button icon="pi pi-trash" rounded severity="warning" onClick={() => confirmDeleteServico(rowData)}/>
             </>
         );
     };
@@ -336,150 +338,157 @@ const ServicoPage = () => {
         <div className="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
             <h5 className="m-0">Gerenciamento de Serviços</h5>
             <span className="block mt-2 md:mt-0 p-input-icon-left">
-                <InputText type="search" onInput={(e) => setGlobalFilter(e.currentTarget.value)} placeholder="Pesquisar" />
+                <InputText type="search" onInput={(e) => setGlobalFilter(e.currentTarget.value)}
+                           placeholder="Pesquisar"/>
             </span>
         </div>
     );
 
     const servicoDialogFooter = (
         <>
-            <Button label="Cancelar" icon="pi pi-times" text onClick={hideDialog} />
-            <Button label="Salvar" icon="pi pi-check" text onClick={saveServico} />
+            <Button label="Cancelar" icon="pi pi-times" text onClick={hideDialog}/>
+            <Button label="Salvar" icon="pi pi-check" text onClick={saveServico}/>
         </>
     );
     const deleteServicoDialogFooter = (
         <>
-            <Button label="Não" icon="pi pi-times" text onClick={hideDeleteServicoDialog} />
-            <Button label="Sim" icon="pi pi-check" text onClick={deleteServico} />
+            <Button label="Não" icon="pi pi-times" text onClick={hideDeleteServicoDialog}/>
+            <Button label="Sim" icon="pi pi-check" text onClick={deleteServico}/>
         </>
     );
     const deleteServicosDialogFooter = (
         <>
-            <Button label="Não" icon="pi pi-times" text onClick={hideDeleteServicosDialog} />
-            <Button label="Sim" icon="pi pi-check" text onClick={deleteSelectedServicos} />
+            <Button label="Não" icon="pi pi-times" text onClick={hideDeleteServicosDialog}/>
+            <Button label="Sim" icon="pi pi-check" text onClick={deleteSelectedServicos}/>
         </>
     );
 
     return (
-        <div>
+        <div style={{paddingTop: "14px"}}>
             <div className='empresas-select'>
                 <Dropdown value={empresa} onChange={empresaChange} options={empresas} optionLabel="name"
-                    placeholder="Selecione a empresa" />
+                          placeholder="Selecione a empresa"/>
             </div>
             {
                 empresa &&
-                <div style={{ padding: "0 10px" }}>
-                    <div className="card">
-                        <Toast ref={toast} />
-                        <Toolbar className="mb-4" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
+                <div style={{padding: "0 10px"}}>
+                    <Toast ref={toast}/>
+                    <Toolbar className="mb-4" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
 
-                        <DataTable
-                            ref={dt}
-                            value={servicos}
-                            selection={selectedServicos}
-                            onSelectionChange={(e) => setSelectedServicos(e.value as any)}
-                            dataKey="id"
-                            paginator
-                            rows={10}
-                            rowsPerPageOptions={[5, 10, 25]}
-                            className="datatable-responsive"
-                            paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-                            currentPageReportTemplate="Exibindo {first} até {last} de {totalRecords} Serviços"
-                            globalFilter={globalFilter}
-                            emptyMessage="Nenhum serviço encontrado"
-                            header={header}
-                            responsiveLayout="scroll"
-                        >
-                            <Column selectionMode="multiple" headerStyle={{ width: '4rem' }}></Column>
-                            <Column field="id" header="Código" sortable body={idBodyTemplate} headerStyle={{ minWidth: '6rem' }}></Column>
-                            <Column field="nome" header="Nome" sortable body={nomeBodyTemplate} headerStyle={{ minWidth: '15rem' }}></Column>
-                            <Column field="tempo" header="Tempo" sortable body={tempoBodyTemplate} headerStyle={{ minWidth: '15rem' }}></Column>
-                            <Column field="valor" header="Valor" sortable body={valorBodyTemplate} headerStyle={{ minWidth: '15rem' }}></Column>
-                            <Column body={actionBodyTemplate} headerStyle={{ minWidth: '10rem' }}></Column>
-                        </DataTable>
+                    <DataTable
+                        ref={dt}
+                        value={servicos}
+                        selection={selectedServicos}
+                        onSelectionChange={(e) => setSelectedServicos(e.value as any)}
+                        dataKey="id"
+                        paginator
+                        rows={10}
+                        rowsPerPageOptions={[5, 10, 25]}
+                        className="datatable-responsive"
+                        paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+                        currentPageReportTemplate="Exibindo {first} até {last} de {totalRecords} Serviços"
+                        globalFilter={globalFilter}
+                        emptyMessage="Nenhum serviço encontrado"
+                        header={header}
+                        responsiveLayout="scroll"
+                    >
+                        <Column selectionMode="multiple" headerStyle={{width: '4rem'}}></Column>
+                        <Column field="id" header="Código" sortable body={idBodyTemplate}
+                                headerStyle={{minWidth: '6rem'}}></Column>
+                        <Column field="nome" header="Nome" sortable body={nomeBodyTemplate}
+                                headerStyle={{minWidth: '15rem'}}></Column>
+                        <Column field="tempo" header="Tempo" sortable body={tempoBodyTemplate}
+                                headerStyle={{minWidth: '15rem'}}></Column>
+                        <Column field="valor" header="Valor" sortable body={valorBodyTemplate}
+                                headerStyle={{minWidth: '15rem'}}></Column>
+                        <Column body={actionBodyTemplate} headerStyle={{minWidth: '10rem'}}></Column>
+                    </DataTable>
 
-                        <Dialog visible={servicoDialog} style={{ width: '450px' }} header="Detalhes do Serviço" modal className="p-fluid" footer={servicoDialogFooter} onHide={hideDialog}>
+                    <Dialog visible={servicoDialog} style={{width: '450px'}} header="Detalhes do Serviço" modal
+                            className="p-fluid" footer={servicoDialogFooter} onHide={hideDialog}>
 
-                            <div className="field">
-                                <label htmlFor="nome">Nome</label>
-                                <InputText
-                                    id="nome"
-                                    value={servico.nome}
-                                    onChange={(e) => onInputChange(e, 'nome')}
-                                    required
-                                    className={classNames({
-                                        'p-invalid': submitted && !servico.nome
-                                    })}
-                                />
-                                {submitted && !servico.nome && <small className="p-invalid">Nome é obrigatório.</small>}
-                            </div>
+                        <div className="field">
+                            <label htmlFor="nome">Nome</label>
+                            <InputText
+                                id="nome"
+                                value={servico.nome}
+                                onChange={(e) => onInputChange(e, 'nome')}
+                                required
+                                className={classNames({
+                                    'p-invalid': submitted && !servico.nome
+                                })}
+                            />
+                            {submitted && !servico.nome && <small className="p-invalid">Nome é obrigatório.</small>}
+                        </div>
 
-                            <div className="field">
-                                <label htmlFor="tempo">Tempo</label>
-                                <InputText
-                                    id="tempo"
-                                    value={servico.tempo}
-                                    onChange={(e) => onInputChange(e, 'tempo')}
-                                    required
-                                    className={classNames({
-                                        'p-invalid': submitted && !servico.tempo
-                                    })}
-                                />
-                                {submitted && !servico.tempo && <small className="p-invalid">Tempo é obrigatório.</small>}
-                            </div>
+                        <div className="field">
+                            <label htmlFor="tempo">Tempo</label>
+                            <InputText
+                                id="tempo"
+                                value={servico.tempo}
+                                onChange={(e) => onInputChange(e, 'tempo')}
+                                required
+                                className={classNames({
+                                    'p-invalid': submitted && !servico.tempo
+                                })}
+                            />
+                            {submitted && !servico.tempo && <small className="p-invalid">Tempo é obrigatório.</small>}
+                        </div>
 
-                            <div className="field">
-                                <label htmlFor="valor">Valor</label>
-                                <InputText
-                                    id="valor"
-                                    value={servico.valor}
-                                    onChange={(e) => onInputChange(e, 'valor')}
-                                    required
-                                    className={classNames({
-                                        'p-invalid': submitted && !servico.valor
-                                    })}
-                                />
-                                {submitted && !servico.valor && <small className="p-invalid">Valor é obrigatório.</small>}
-                            </div>
+                        <div className="field">
+                            <label htmlFor="valor">Valor</label>
+                            <InputText
+                                id="valor"
+                                value={servico.valor}
+                                onChange={(e) => onInputChange(e, 'valor')}
+                                required
+                                className={classNames({
+                                    'p-invalid': submitted && !servico.valor
+                                })}
+                            />
+                            {submitted && !servico.valor && <small className="p-invalid">Valor é obrigatório.</small>}
+                        </div>
 
-                            <div className="field">
-                                <label htmlFor="usuarioId">Usuário</label>
-
-
-                                <MultiSelect
-                                    value={servico.usuarios}
-                                    onChange={onUsuariosChange}
-                                    options={usuarios}
-                                    optionLabel="name"
-                                    filter
-                                    placeholder="Selecione os usuários"
-                                    maxSelectedLabels={3}
-                                    className="w-full md:w-20rem"
-                                />
-                                {submitted && !servico.usuarios && <small className="p-invalid">Usuário é obrigatório.</small>}
-                            </div>
+                        <div className="field">
+                            <label htmlFor="usuarioId">Usuário</label>
 
 
-                        </Dialog>
+                            <MultiSelect
+                                value={servico.usuarios}
+                                onChange={onUsuariosChange}
+                                options={usuarios}
+                                optionLabel="name"
+                                filter
+                                placeholder="Selecione os usuários"
+                                maxSelectedLabels={3}
+                                className="w-full md:w-20rem"
+                            />
+                            {submitted && !servico.usuarios &&
+                                <small className="p-invalid">Usuário é obrigatório.</small>}
+                        </div>
 
-                        <Dialog visible={deleteServicoDialog} style={{ width: '450px' }} header="Confirmar" modal footer={deleteServicoDialogFooter} onHide={hideDeleteServicoDialog}>
-                            <div className="flex align-items-center justify-content-center">
-                                <i className="pi pi-exclamation-triangle mr-3" style={{ fontSize: '2rem' }} />
-                                {servico && (
-                                    <span>
+
+                    </Dialog>
+
+                    <Dialog visible={deleteServicoDialog} style={{width: '450px'}} header="Confirmar" modal
+                            footer={deleteServicoDialogFooter} onHide={hideDeleteServicoDialog}>
+                        <div className="flex align-items-center justify-content-center">
+                            <i className="pi pi-exclamation-triangle mr-3" style={{fontSize: '2rem'}}/>
+                            {servico && (
+                                <span>
                                         Você realmente deseja excluir o serviço <b>{servico.nome}</b>?
                                     </span>
-                                )}
-                            </div>
-                        </Dialog>
+                            )}
+                        </div>
+                    </Dialog>
 
-                        <Dialog visible={deleteServicosDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteServicosDialogFooter} onHide={hideDeleteServicosDialog}>
-                            <div className="flex align-items-center justify-content-center">
-                                <i className="pi pi-exclamation-triangle mr-3" style={{ fontSize: '2rem' }} />
-                                {servico && <span>Você realmente deseja excluir os serviços selecionados?</span>}
-                            </div>
-                        </Dialog>
-                    </div>
+                    <Dialog visible={deleteServicosDialog} style={{width: '450px'}} header="Confirm" modal
+                            footer={deleteServicosDialogFooter} onHide={hideDeleteServicosDialog}>
+                        <div className="flex align-items-center justify-content-center">
+                            <i className="pi pi-exclamation-triangle mr-3" style={{fontSize: '2rem'}}/>
+                            {servico && <span>Você realmente deseja excluir os serviços selecionados?</span>}
+                        </div>
+                    </Dialog>
                 </div>
             }
 
