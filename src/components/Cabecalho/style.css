@@ -1,16 +1,22 @@
 .cabecalho-container {
-    height: 6vh;
-    background-color: #1565C0;
+    height: 70px;
+    background-color: #fff;
     padding: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
+    position: fixed; /* Fixa o cabeçalho no topo */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Garante que o cabeçalho fique acima dos outros elementos */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra leve */
 }
 
+/* Ajuste do botão transparente */
 .transparent-button {
     height: 50px;
-    background-color: transparent;
+    background-color: #007bff;
     border: none;
     box-shadow: none;
     padding: 0;
@@ -18,12 +24,65 @@
     left: 10px;
 }
 
+/* Estilo ao passar o mouse sobre o botão */
 .transparent-button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #0D47A1; /* Um tom um pouco mais escuro no hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra ao passar o mouse */
 }
 
+/* Estilo do título no cabeçalho
 .titulo-cabecalho {
-    color: #FFFFFF;
+    color: #007bff;
     font-size: 24px;
     margin: 0;
+} */
+
+.logo-cabecalho {
+    transform: scale(0.1); /* Reduz para 50% do tamanho original */
+    transform-origin: center;
 }
+
+/* Container dos botões de login e cadastro */
+.cabecalho-botoes {
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    right: 10px;
+}
+
+/* Estilo do botão de login */
+.login-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+/* Estilo do botão de cadastro */
+.cadastro-button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+/* Estilo dos botões ao passar o mouse */
+.login-button:hover {
+    background-color: #0056b3;
+}
+
+.cadastro-button:hover {
+    background-color: #218838;
+}
+
+/* Adiciona espaço no conteúdo para não ser encoberto pelo cabeçalho fixo */
+.content {
+    margin-top: 6vh; /* Compensa a altura do cabeçalho */
+}
+

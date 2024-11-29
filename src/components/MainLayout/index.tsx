@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Cabecalho from '../Cabecalho';
 import MenuComponent from '../MenuComponent';
-import './style.css'; // Adicione o arquivo CSS
+import './style.css';
 
 const MainLayout: React.FC = () => {
     const [isMenuVisivel, setIsMenuVisivel] = useState(false);
@@ -12,7 +12,7 @@ const MainLayout: React.FC = () => {
     };
 
     return (
-        <div>
+        <div className="main-layout-container">
             <Cabecalho toggleMenu={toggleMenu} />
             <div className='content'>
                 <MenuComponent isMenuVisivel={isMenuVisivel} />
